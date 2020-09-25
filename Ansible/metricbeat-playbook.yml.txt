@@ -1,0 +1,33 @@
+---
+- name: Download .deb from arrtifacts.elastic.co
+  hosts: webservers
+  become:true
+  tasks:
+   # Use commmand module
+  - name: Download metricbeat .deb file
+    apt:
+     deb: https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb
+
+   # Use command module
+  - name: Install metricbeat .deb
+    command: dpkg -i metricbeat-7.6.1-amd64.deb
+
+   # Use copy module
+  - name: Drop in metricbeat.yml
+    copy:
+      src: /etc/ansibe/files/metricbeat-config.yml
+      dest: /etc/metricbeat/metricbeat.yml
+      
+   # use command module
+   - name: Enable docker service
+     systemd: 
+        name: docker
+        enabled: yes
+        
+   # Use command module
+  - name: setup metricbeat
+    command: metricbeat setup
+
+   # Use command module
+  - name: start metricbeat service
+    command: service metricbeat start
