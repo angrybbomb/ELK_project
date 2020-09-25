@@ -4,9 +4,7 @@ Class Project-1, Elk Stack Deployment
 
 The files in this repository were used to configure the network depicted below.
  
- 
-
-
+<img width="539" alt="Network_Diagram" src="https://user-images.githubusercontent.com/66395625/94220166-02070300-feae-11ea-958e-7dfb9d3862e9.PNG">
 
    These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
 
@@ -37,10 +35,10 @@ Load balancing ensures that the application will be highly efficient, in additio
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the changes to the Logs and system traffic.
 
-- What does Filebeat watch for?_
+- What does Filebeat watch for?
    	- Filebeat watches for any information in the file system which has been changed and when it has.  
    	- Filebeat watches for log files/locations and collects log events
-- What does Metricbeat record?_
+- What does Metricbeat record?
   	- Metricbeat takes the metrics and statistics that collects and ships them to the output you specify.
    	- Metricbeat records metric and statistical data from the operating system and from services running on the server.
 
@@ -60,7 +58,7 @@ The configuration details of each machine may be found below.
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the JumpBox machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- Add whitelisted IP addresses_
+- Add whitelisted IP addresses:-
     	- Public IP address which changes everytime when the VM is on/off eg of Public IP 137.135.115.14
 
 Machines within the network can only be accessed by SSH.
@@ -85,7 +83,6 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
   	- This allows you to deploy to multiple servers using a single playbook
 
 The playbook implements the following tasks:
-- In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
 - Install docker.io
 - Install Python-pip
 - Install docker container
@@ -94,7 +91,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
  
- 
+ <img width="675" alt="docker_ps" src="https://user-images.githubusercontent.com/66395625/94220139-f1568d00-fead-11ea-865b-2db7931cd4d4.PNG">
 
 Target Machines & Beats
 
@@ -109,8 +106,6 @@ We have installed the following Beats on these machines:
     	-  Metricbeat
 
 These Beats allow us to collect the following information from each machine:
-
-    - In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
 
    	- Filebeat monitors log files or locations you specify, collects log events, and forwards them either to Elasticsearch or Logstash for indexing.
    	- Metricbeat collects metrics from the operating system and from services running on the server.
@@ -139,7 +134,7 @@ Playbook: install_elk.yml Location: /etc/ansible/install_elk.yml
 Navigate to  http://[your.ELK-VM.External.IP]:5601/app/kibana to confirm ELK and kibana are running.  You may need to try from multiple web browsers
 Click 'Explore On Your Own' and you should see the following:
 
- 
+ <img width="960" alt="Kibana_dashboard" src="https://user-images.githubusercontent.com/66395625/94220160-fddae580-fead-11ea-9c17-8a789bf1522c.PNG">
 
 
 Answer the following questions to fill in the blanks:
@@ -161,8 +156,7 @@ Answer the following questions to fill in the blanks:
 
       you should see the following:
 
- 
-
+ <img width="960" alt="Filebeat syslog" src="https://user-images.githubusercontent.com/66395625/94220157-fadff500-fead-11ea-86cb-3b09a1988f2e.PNG">
  
    The commands needed to run the Ansible configuration for the Elk-Server are:
 
@@ -174,10 +168,10 @@ cd /etc/ansible/
 	- ansible-playbook elk.yml (configures Elk-Server and starts the Elk container on the Elk-Server) wait a couple minutes for the implementation of the Elk-Server
 	- cd /etc/ansible/roles/
 	- ansible-playbook filebeat-playbook.yml (installs Filebeat and Metricbeat)
-	- open a new web browser (http://[your.ELK-VM.External.IP]:5601/app/kibana)                                           This will bring up the Kibana Web Portal
+	- open a new web browser (http://[your.ELK-VM.External.IP]:5601/app/kibana) This will bring up the Kibana Web Portal
 	- check the Module status for file beat and metric beat to see their data receiving.
 
-**You will need to ensure all files are properly placed before running the ansible-playbooks.
+** You will need to ensure all files are properly placed before running the ansible-playbooks.
 
 
 
